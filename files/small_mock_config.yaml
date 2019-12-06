@@ -1,0 +1,7 @@
+common:
+  accounts:
+    firsttest:
+      email: test@test.com
+      number: 12345
+      roles:
+        RoleTest: [test]

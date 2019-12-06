@@ -1,0 +1,35 @@
+common:
+  accounts:
+    sandbox:
+      email: test@test.com
+      number: 12345
+      roles:
+        RoleSandboxEngineer: [test_role, test_role2, test_role3]
+        RoleSandboxViewer: [test_role, test_role2, test_role3]
+        RoleAdministrator: [test_role, test_role2, test_role3]
+    auth:
+      email: test@test.com
+      number: 11111
+      roles:
+        RoleEncryption: [test_role, test_role2, test_role3]
+        RoleAdministrator: [test_role, test_role2, test_role3]
+        RoleIRO: [test_role, test_role2, test_role3]
+        RolePO: [test_role, test_role2, test_role3]
+        RoleSecAdministrator: [test_role, test_role2, test_role3]
+    auth-test:
+      email: test@test.com
+      number: 21212
+      roles:
+        RoleEncryption: [test_role, test_role2, test_role3]
+        RoleAdministrator: [test_role, test_role2, test_role3]
+        RoleIRO: [test_role, test_role2, test_role3]
+        RolePO: [test_role, test_role2, test_role3]
+        RoleTest: [test_role, test_role2, test_role3]
+    test-base:
+      email: test@test.com
+      number: 76543
+      roles:
+        RoleBEngineer: [test_role, test_role2, test_role3]
+
+
+  
