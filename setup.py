@@ -23,7 +23,7 @@ setup(
     install_requires=install_requires,
     entry_points={
         "console_scripts": [
-            "account-links-generator = account-links_generator.account-links_generator:main"
+            "account-links-generator = accountlinks_generator.accountlinks_generator:main"
         ]
     },
 )
