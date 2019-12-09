@@ -116,5 +116,6 @@ def test_make_entire_table():
 def test_generate_entire_document():
     data = yaml_loader(small_mock_config)
     groups = data.get("common")
-    intro = "a"
-    assert generate_entire_document(groups, intro) is None
+    intro = None
+    outro = None
+    assert generate_entire_document(groups, intro, outro) is None
