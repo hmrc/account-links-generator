@@ -2,12 +2,19 @@
 
 import yaml
 import sys
+from yaml.scanner import ScannerError
 
 
 def yaml_loader(filepath):
     with open(filepath, "r") as file_descriptor:
-        data = yaml.full_load(file_descriptor)
-    return data
+        try:
+            data = yaml.full_load(file_descriptor)
+            return data
+        except ScannerError:
+            sys.tracebacklimit = 0
+            print(f"ERROR: {filepath} is not a valid yaml file.")
+            raise 
+   
 
 
 def get_all_prefixes(groups):
@@ -103,22 +110,23 @@ def make_entire_table(prefix, groups):
     return table
 
 
-def generate_entire_document(groups, intro):
+def generate_entire_document(groups, intro, outro):
     # this orchestrates the printing of each table with the prefix the environments are grouped by printed before each one
     prefixes = get_all_prefixes(groups)
-    print(intro)
+    if intro != "None":
+        print(intro.read())
     for prefix in prefixes:
         print("## {} Accounts/Roles".format(prefix))
         print(make_entire_table(prefix, groups))
+    if outro != "None":
+        print(outro.read())
 
 
-if __name__ == "__main__":
+def main(config, output, intro=None, outro=None):
     # define config & intro text file path & load
-    filepath = ""
-    data = yaml_loader(filepath)
-    load_intro = open("files/intro.txt", "r")
-    intro = load_intro.read()
+    data = yaml_loader(config)
+    intro = open(intro, "r")
     # define "groups" variable referenced in document, import date and set ouput to write to "accountlinks.md"
     groups = data.get("common")
-    sys.stdout = open("files/accountlinks.md", "wt")
-    generate_entire_document(groups, intro)
+    sys.stdout = open(output, "wt")
+    generate_entire_document(groups, intro, outro)
