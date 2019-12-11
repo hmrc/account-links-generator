@@ -2,8 +2,12 @@ from accountlinks_generator import main
 import argparse
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--config", help="path to config file - MUST BE .yaml FILE", required=True)
-parser.add_argument("--output", help="desired output path - MUST be .md FILE", required=True)
+parser.add_argument(
+    "--config", help="path to config file - MUST BE .yaml FILE", required=True
+)
+parser.add_argument(
+    "--output", help="desired output path - MUST be .md FILE", required=True
+)
 parser.add_argument(
     "--intro", help="path to introductory text (optional)", required=False
 )
