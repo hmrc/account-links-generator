@@ -66,7 +66,7 @@ def role_formatter(role):
 
 def generate_account_links(environment, role, groups):
     # this function generates the links for each role in the specific format AWS uses
-    return "https://signin.aws.amazon.com/switchrole?account={}&roleName={}&displayName{}".format(
+    return "https://signin.aws.amazon.com/switchrole?account={}&roleName={}&displayName={}".format(
         get_account_number(environment, groups), role, role
     )
 
@@ -114,18 +114,20 @@ def generate_entire_document(groups, intro, outro):
     # this orchestrates the printing of each table with the prefix the environments are grouped by printed before each one
     prefixes = get_all_prefixes(groups)
     if intro != "None":
-        print(intro.read())
+        introfile = open(intro, "r")
+        print(introfile.read())
     for prefix in prefixes:
         print("## {} Accounts/Roles".format(prefix))
         print(make_entire_table(prefix, groups))
     if outro != "None":
+        outrofile = open(outro, "r")
         print(outro.read())
 
 
 def main(config, output, intro=None, outro=None):
     # define config & intro text file path & load
     data = yaml_loader(config)
-    intro = open(intro, "r")
+    
     # define "groups" variable referenced in document, import date and set ouput to write to "accountlinks.md"
     groups = data.get("common")
     sys.stdout = open(output, "wt")
