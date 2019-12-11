@@ -13,8 +13,7 @@ def yaml_loader(filepath):
         except ScannerError:
             sys.tracebacklimit = 0
             print(f"ERROR: {filepath} is not a valid yaml file.")
-            raise 
-   
+            raise
 
 
 def get_all_prefixes(groups):
@@ -66,8 +65,8 @@ def role_formatter(role):
 
 def generate_account_links(environment, role, groups):
     # this function generates the links for each role in the specific format AWS uses
-    return "https://signin.aws.amazon.com/switchrole?account={}&roleName={}&displayName={}".format(
-        get_account_number(environment, groups), role, role
+    return "https://signin.aws.amazon.com/switchrole?account={}&roleName={}".format(
+        get_account_number(environment, groups), role
     )
 
 
@@ -127,7 +126,7 @@ def generate_entire_document(groups, intro, outro):
 def main(config, output, intro=None, outro=None):
     # define config & intro text file path & load
     data = yaml_loader(config)
-    
+
     # define "groups" variable referenced in document, import date and set ouput to write to "accountlinks.md"
     groups = data.get("common")
     sys.stdout = open(output, "wt")

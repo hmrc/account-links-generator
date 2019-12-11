@@ -74,7 +74,7 @@ def test_genenerate_account_links():
     groups = data.get("common")
     assert (
         generate_account_links("test-base", "RoleBEngineer", groups)
-        == "https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer&displayName=RoleBEngineer"
+        == "https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer"
     )
 
 
@@ -100,7 +100,7 @@ def test_make_table_body():
 
     assert (
         make_table_body("test-base", "test", groups)
-        == "| test-base | 76543 | [BEngineer](https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer&displayName=RoleBEngineer) |"
+        == "| test-base | 76543 | [BEngineer](https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer) |"
     )
 
 
@@ -109,7 +109,7 @@ def test_make_entire_table():
     groups = data.get("common")
     assert (
         make_entire_table("firsttest", groups)
-        == "| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest&displayName=RoleTest) |\n"
+        == "| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest) |\n"
     )
 
 
