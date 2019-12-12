@@ -1,7 +1,7 @@
 
 # Account Links Generator
 
-This is a python tool to generate a set of markdown formatted tables from an AWS config.yaml file to enable users to easily find an assume an AWS IAM role for each specific environment contained in the .yaml file.
+This is a python tool to generate a set of markdown formatted tables from an AWS config.yaml file to enable users to easily find and assume an AWS IAM role for each specific environment contained in the .yaml file.
 
 ## Usage
 
