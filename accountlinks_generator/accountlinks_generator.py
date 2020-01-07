@@ -63,10 +63,15 @@ def role_formatter(role):
     return role.replace("Role", "", 1)
 
 
+def display_name(environment, role):
+    display_name = "{}/{}".format(environment, role_formatter(role))
+    return display_name[:64]
+
+
 def generate_account_links(environment, role, groups):
     # this function generates the links for each role in the specific format AWS uses
-    return "https://signin.aws.amazon.com/switchrole?account={}&roleName={}".format(
-        get_account_number(environment, groups), role
+    return "https://signin.aws.amazon.com/switchrole?account={}&roleName={}&displayName={}".format(
+        get_account_number(environment, groups), role, display_name(environment, role)
     )
 
 
@@ -112,22 +117,23 @@ def make_entire_table(prefix, groups):
 def generate_entire_document(groups, intro, outro):
     # this orchestrates the printing of each table with the prefix the environments are grouped by printed before each one
     prefixes = get_all_prefixes(groups)
+    document = ""
     if intro != "None":
         introfile = open(intro, "r")
-        print(introfile.read())
+        document += introfile.read()
     for prefix in prefixes:
-        print("## {} Accounts/Roles".format(prefix))
-        print(make_entire_table(prefix, groups))
+        document += "## {} Accounts/Roles".format(prefix)
+        document += make_entire_table(prefix, groups)
     if outro != "None":
         outrofile = open(outro, "r")
-        print(outro.read())
+        document += outrofile.read()
+    return document
 
 
 def main(config, output, intro=None, outro=None):
     # define config & intro text file path & load
     data = yaml_loader(config)
-
-    # define "groups" variable referenced in document, import date and set ouput to write to "accountlinks.md"
+    # define "groups" variable referenced in document and set output to write to "accountlinks.md"
     groups = data.get("common")
     sys.stdout = open(output, "wt")
-    generate_entire_document(groups, intro, outro)
+    print(generate_entire_document(groups, intro, outro))
