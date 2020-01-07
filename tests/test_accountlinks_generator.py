@@ -7,6 +7,7 @@ from accountlinks_generator.accountlinks_generator import (
     get_all_roles,
     get_environments_with_common_prefix,
     role_formatter,
+    display_name,
     generate_account_links,
     make_table_header,
     make_table_border,
@@ -69,12 +70,25 @@ def test_role_formatter():
     assert role_formatter("RoleSandboxViewer") == "SandboxViewer"
 
 
+def test_display_name():
+    assert (
+        display_name("test-environment", "RoleTestRole") == "test-environment/TestRole"
+    )
+    assert (
+        display_name(
+            "test-environment",
+            "Rolereallyreallyreallyreallyreallyreallyreallylongrolename",
+        )
+        == "test-environment/reallyreallyreallyreallyreallyreallyreallylongr"
+    )
+
+
 def test_genenerate_account_links():
     data = yaml_loader(mock_config)
     groups = data.get("common")
     assert (
         generate_account_links("test-base", "RoleBEngineer", groups)
-        == "https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer"
+        == "https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer&displayName=test-base/BEngineer"
     )
 
 
@@ -100,7 +114,7 @@ def test_make_table_body():
 
     assert (
         make_table_body("test-base", "test", groups)
-        == "| test-base | 76543 | [BEngineer](https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer) |"
+        == "| test-base | 76543 | [BEngineer](https://signin.aws.amazon.com/switchrole?account=76543&roleName=RoleBEngineer&displayName=test-base/BEngineer) |"
     )
 
 
@@ -109,13 +123,16 @@ def test_make_entire_table():
     groups = data.get("common")
     assert (
         make_entire_table("firsttest", groups)
-        == "| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest) |\n"
+        == "| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest&displayName=firsttest/Test) |\n"
     )
 
 
 def test_generate_entire_document():
     data = yaml_loader(small_mock_config)
     groups = data.get("common")
-    intro = "None"
-    outro = "None"
-    assert generate_entire_document(groups, intro, outro) is None
+    intro = "files/intro.md"
+    outro = "files/outro.md"
+    assert (
+        generate_entire_document(groups, intro, outro)
+        == "testintro\n## firsttest Accounts/Roles| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest&displayName=firsttest/Test) |\ntestoutro\n"
+    )
