@@ -119,14 +119,18 @@ def generate_entire_document(groups, intro, outro):
     prefixes = get_all_prefixes(groups)
     document = ""
     if intro != "None":
-        introfile = open(intro, "r")
+        introfile = open(intro, "r") 
         document += introfile.read()
+        document += "\n"
     for prefix in prefixes:
         document += "## {} Accounts/Roles".format(prefix)
+        document += "\n"
         document += make_entire_table(prefix, groups)
+        document += "\n"
     if outro != "None":
         outrofile = open(outro, "r")
         document += outrofile.read()
+        document += "\n"
     return document
 
 
