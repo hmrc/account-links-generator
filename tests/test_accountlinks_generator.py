@@ -132,7 +132,8 @@ def test_generate_entire_document():
     groups = data.get("common")
     intro = "files/intro.md"
     outro = "files/outro.md"
+    print(generate_entire_document(groups, intro, outro))
     assert (
         generate_entire_document(groups, intro, outro)
-        == "testintro\n## firsttest Accounts/Roles| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest&displayName=firsttest/Test) |\ntestoutro\n"
+        == "testintro\n## firsttest Accounts/Roles\n| Environment | Account No. | RoleTest |\n|---|---|---|\n| firsttest | 12345 | [Test](https://signin.aws.amazon.com/switchrole?account=12345&roleName=RoleTest&displayName=firsttest/Test) |\n\ntestoutro"
     )
