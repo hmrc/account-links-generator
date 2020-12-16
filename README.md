@@ -5,11 +5,17 @@ This is a python tool to generate a set of markdown formatted tables from an AWS
 
 ## Usage
 
-The program accepts 4 arguments: 
+The program accepts 4 arguments:
  - **--config** - the path to the desired .yaml config file
- - **--output** - the desired path of the markdown-formatted output 
+ - **--output** - the desired path of the markdown-formatted output
  - **--intro** - the path to any text to be displayed *before* the markdown tables (optional)
  - **--outro** - the path to any text to be displayed *after* the markdown tables (optional)
-### License
+
+## Docker
+Build an image locally:
+```shell
+docker build -t hmrc/account-links-generator:1.0.0 .
+```
+## License
 
 This code is open source software licensed under the [Apache 2.0 License]("http://www.apache.org/licenses/LICENSE-2.0.html").
