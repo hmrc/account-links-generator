@@ -1,4 +1,4 @@
-FROM python:3.6.5-slim
+FROM python:3.9.1-slim
 
 # Change working directory to cloned repo
 WORKDIR /account-links-generator
