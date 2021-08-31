@@ -1,9 +1,11 @@
-FROM python:3.6.5-slim
+FROM python:3.9.1-slim
 
 # Change working directory to cloned repo
 WORKDIR /account-links-generator
 
-COPY . .
+COPY requirements.txt .
 
 # Install python dependencies
-RUN pip install -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
