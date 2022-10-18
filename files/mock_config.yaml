@@ -30,6 +30,3 @@ common:
       number: 76543
       roles:
         RoleBEngineer: [test_role, test_role2, test_role3]
-
-
-  
