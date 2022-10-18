@@ -1,15 +1,17 @@
-
 # Account Links Generator
 
-This is a python tool to generate a set of markdown formatted tables from an AWS config.yaml file to enable users to easily find and assume an AWS IAM role for each specific environment contained in the .yaml file.
+[![Brought to you by Telemetry Team](https://img.shields.io/badge/MDTP-Telemetry-40D9C0?style=flat&labelColor=000000&logo=gov.uk)](https://confluence.tools.tax.service.gov.uk/display/TEL/Telemetry)
+
+This is a python tool to generate a set of markdown formatted tables from an AWS config.yaml file to enable users to
+easily find and assume an AWS IAM role for each specific environment contained in the .yaml file.
 
 ## Usage
 
 The program accepts 4 arguments:
- - **--config** - the path to the desired .yaml config file
- - **--output** - the desired path of the markdown-formatted output
- - **--intro** - the path to any text to be displayed *before* the markdown tables (optional)
- - **--outro** - the path to any text to be displayed *after* the markdown tables (optional)
+- **--config** - the path to the desired .yaml config file
+- **--output** - the desired path of the markdown-formatted output
+- **--intro** - the path to any text to be displayed *before* the Markdown tables (optional)
+- **--outro** - the path to any text to be displayed *after* the Markdown tables (optional)
 
 ## Docker
 Build an image locally:
