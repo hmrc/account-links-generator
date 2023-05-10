@@ -1,0 +1,4 @@
+[[source]]
+name = "pypi"
+url = "https://artefacts.tax.service.gov.uk/artifactory/api/pypi/pips/simple"
+verify_ssl = true
