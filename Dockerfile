@@ -6,6 +6,6 @@ WORKDIR /account-links-generator
 COPY requirements.txt .
 
 # Install python dependencies
-RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --index-url https://artefacts.tax.service.gov.uk/artifactory/api/pypi/pips/simple --no-cache-dir -r requirements.txt
 
 COPY . .
