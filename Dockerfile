@@ -1,4 +1,5 @@
-FROM python:3.9.15-slim
+ARG DOCKERHUB=dockerhub.tax.service.gov.uk
+FROM ${DOCKERHUB}/python:3.9.15-slim
 
 # Change working directory to cloned repo
 WORKDIR /account-links-generator
